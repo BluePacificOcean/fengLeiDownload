@@ -1,2 +1,2 @@
-# fengLeiDownload
-风雷下载器
+# 风雷下载器
+基于Aria2+AriaNg的一个下载器，免去了打包运行等烦恼
