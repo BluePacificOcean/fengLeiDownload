@@ -5,11 +5,12 @@
   "main": "index.js",
   "build": {
     "appId": "com.qf.fengleidownload",
-    "productName": "FengleiDownload"
+    "productName": "FengLeiDownload",
+    "extraResources": ["aria2", "config"]
   },
   "scripts": {
     "start": "tsc index.ts && electron .",
-    "build": "electron-builder",
+    "build": "tsc index.ts && electron-builder",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

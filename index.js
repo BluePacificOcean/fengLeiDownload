@@ -2,7 +2,7 @@
 exports.__esModule = true;
 var electron_1 = require("electron");
 var child_process_1 = require("child_process");
-var fs_1 = require("fs");
+var promises_1 = require("fs/promises");
 var https_1 = require("https");
 function downloadAria2() {
     console.group('download start');
@@ -16,17 +16,16 @@ function downloadAria2() {
             res.on("data", function (data) {
                 console.log(data);
                 console.groupEnd();
-                (0, fs_1.writeFile)('aria2.zip', data, function () { resolve(); });
+                (0, promises_1.writeFile)('aria2.zip', data).then(function () { resolve(); });
             });
         }).on("error", function (e) {
-            // alert(e)
             reject(e);
         });
     });
 }
 function startAria2() {
     return new Promise(function (resolve, reject) {
-        (0, child_process_1.exec)(".\\aria2\\aria2c --conf-path .\\conf\\aria2.conf", function (error, out, err) {
+        (0, child_process_1.exec)(".\\aria2\\aria2c --conf-path .\\config\\aria2.conf", function (error, out, err) {
             if (error) {
                 reject(error);
             }
@@ -37,6 +36,7 @@ function startAria2() {
     });
 }
 function createWin() {
+    console.log("create");
     return new electron_1.BrowserWindow({
         // frame: false
         width: 1000,
@@ -44,16 +44,10 @@ function createWin() {
     }).loadFile("./src/index.html");
 }
 electron_1.app.whenReady()
-    .then(function () { return (0, fs_1.stat)('./aria2', function (err, stats) {
-    if (err || !stats.isDirectory()) {
-        return downloadAria2();
-    }
-    else {
-        return Promise.resolve();
-    }
-}); })
+    // .then(() => stat('./aria2'))
+    // .then(stats => stats.isDirectory() ? Promise.resolve() : downloadAria2()
     .then(function () {
-    // startAria2()
+    startAria2();
     createWin();
 })["catch"](function (error) {
     // alert(error)
