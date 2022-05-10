@@ -6,10 +6,15 @@
   "build": {
     "appId": "com.qf.fengleidownload",
     "productName": "FengLeiDownload",
-    "extraResources": ["aria2", "config"]
+    "extraResources": [
+      {
+        "from": "./aria2/",
+        "to": "./aria2"
+      }
+    ]
   },
   "scripts": {
-    "start": "tsc index.ts && electron .",
+    "start": "set NODE_ENV=development&tsc index.ts && electron .",
     "build": "tsc index.ts && electron-builder",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
