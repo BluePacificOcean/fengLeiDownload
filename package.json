@@ -7,13 +7,11 @@
     "appId": "com.qf.fengleidownload",
     "productName": "FengLeiDownload",
     "extraResources": [
-      {
-        "from": "./aria2/",
-        "to": "./aria2"
-      }
+      "aria2"
     ]
   },
   "scripts": {
+    "lint": "eslint index.ts",
     "start": "set NODE_ENV=development&tsc index.ts && electron .",
     "build": "tsc index.ts && electron-builder",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -22,8 +20,11 @@
   "license": "ISC",
   "devDependencies": {
     "@types/electron": "^1.6.10",
+    "@typescript-eslint/eslint-plugin": "^5.23.0",
+    "@typescript-eslint/parser": "^5.23.0",
     "electron": "^18.2.0",
-    "typescript": "^4.6.4",
-    "electron-builder": "^23.0.3"
+    "electron-builder": "^23.0.3",
+    "eslint": "^8.15.0",
+    "typescript": "^4.6.4"
   }
 }

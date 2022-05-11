@@ -6,7 +6,6 @@ var child_process_1 = require("child_process");
 var assetsPath = (0, path_1.join)("".concat(process.cwd()), process.env.NODE_ENV != 'development' ? 'resources' : '');
 var aria2Dir = (0, path_1.join)(assetsPath, '/aria2/');
 var aria2Path = (0, path_1.join)(assetsPath, '/aria2/aria2c');
-console.log(process.env.NODE_ENV);
 var aria2_process = undefined;
 var win = undefined;
 function startAria2() {

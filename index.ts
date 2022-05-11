@@ -1,20 +1,19 @@
 import { app, BrowserWindow } from 'electron'
 import { join } from 'path'
-import { spawn } from 'child_process'
+import { spawn, ChildProcessWithoutNullStreams } from 'child_process'
 
-const assetsPath = join(`${process.cwd()}`, process.env.NODE_ENV != 'development' ? 'resources' : '')
-const aria2Dir = join(assetsPath, '/aria2/')
-const aria2Path = join(assetsPath, '/aria2/aria2c')
-console.log(process.env.NODE_ENV)
-let aria2_process = undefined
-let win = undefined
+const assetsDir = join(process.cwd(), process.env.NODE_ENV != 'development' ? 'resources' : '')
+const aria2Dir = join(assetsDir, '/aria2/')
+const aria2Path = join(assetsDir, '/aria2/aria2c')
+let aria2_process: ChildProcessWithoutNullStreams;
+let win: BrowserWindow;
 
 function startAria2() {
     aria2_process = spawn(aria2Path, ['--conf-path', './aria2.conf'], { cwd: aria2Dir })
-    aria2_process.stdout.on('data', (data:Buffer) => {
+    aria2_process.stdout.on('data', (data: Buffer) => {
         console.log(data.toString())
     })
-    aria2_process.stderr.on('data', (data:Buffer) => {
+    aria2_process.stderr.on('data', (data: Buffer) => {
         console.log(data.toString())
     })
 }
@@ -26,10 +25,6 @@ function createWin() {
     })
 }
 
-app.setAsDefaultProtocolClient('magnet')
-app.on('open-url', (e, url) => {
-    
-})
 app.whenReady()
     .then(() => {
         startAria2()
@@ -41,7 +36,7 @@ app.whenReady()
         app.quit()
     })
 
-app.on("window-all-closed", ()=>{
-    aria2_process.kill()
+app.on("window-all-closed", () => {
+    // aria2_process.kill()
     app.quit()
 })
