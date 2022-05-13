@@ -1,42 +1,43 @@
 import { app, BrowserWindow } from 'electron'
-import { join } from 'path'
 import { spawn, ChildProcessWithoutNullStreams } from 'child_process'
+import { ARIA2DIR, ARIA2PATH, PRELOADPATH } from './config'
 
-const assetsDir = join(process.cwd(), process.env.NODE_ENV != 'development' ? 'resources' : '')
-const aria2Dir = join(assetsDir, '/aria2/')
-const aria2Path = join(assetsDir, '/aria2/aria2c')
-let aria2_process: ChildProcessWithoutNullStreams;
+let aria2Process: ChildProcessWithoutNullStreams;
 let win: BrowserWindow;
 
 function startAria2() {
-    aria2_process = spawn(aria2Path, ['--conf-path', './aria2.conf'], { cwd: aria2Dir })
-    aria2_process.stdout.on('data', (data: Buffer) => {
+    const process = spawn(ARIA2PATH, ['--conf-path', './aria2.conf'], { cwd: ARIA2DIR })
+    process.stdout.once('data', (data: Buffer) => {
         console.log(data.toString())
     })
-    aria2_process.stderr.on('data', (data: Buffer) => {
+    process.stderr.once('data', (data: Buffer) => {
         console.log(data.toString())
     })
+    return process
 }
 
 function createWin() {
     return new BrowserWindow({
         width: 1000,
-        height: 750
+        height: 750,
+        autoHideMenuBar: true,
+        webPreferences: {
+            preload: PRELOADPATH
+        }
     })
 }
 
 app.whenReady()
     .then(() => {
-        startAria2()
+        aria2Process = startAria2()
         win = createWin()
-        win.loadFile("./src/index.html")
+        win.loadFile("./src/page/index.html")
     })
-    .catch(error => {
+    .catch((error: Error) => {
         console.error(error);
         app.quit()
     })
 
-app.on("window-all-closed", () => {
-    // aria2_process.kill()
-    app.quit()
+app.on("quit", () => {
+    aria2Process.kill()
 })
