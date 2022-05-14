@@ -6,6 +6,6 @@ function openSelectPathDialog() {
     })
 }
 
-contextBridge.exposeInMainWorld("flApi", {
+contextBridge.exposeInMainWorld("FLApi", {
     openSelectPathDialog
 })

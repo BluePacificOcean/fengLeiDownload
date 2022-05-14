@@ -28,7 +28,7 @@ function createWin() {
             preload: PRELOADPATH
         }
     })
-    win.loadFile('src/page/index.html')
+    win.loadFile('src/renderer/index.html')
 }
 
 function openWin() {
@@ -54,14 +54,19 @@ function createTray(): Tray {
 }
 
 app.whenReady()
-    .then(() => startAria2())
+    .then(() => {
+        if(app.requestSingleInstanceLock()) {
+            return startAria2()
+        }
+        return Promise.reject("program started")
+    })
     .then(() => {
         createTray()
         openWin()
     })
     .catch((error: Error) => {
         console.error(error);
-        app.quit()
+        app.exit()
     })
 
 app.on("window-all-closed", () => {
