@@ -1,5 +1,5 @@
 import { readFile } from 'fs'
-import { ARIA2DIR } from '../../config'
+import { ARIA2DIR } from '../config/index'
 
 export function readConfig(): Promise<Map<string, string>> {
     const config: Map<string, string> = new Map()
