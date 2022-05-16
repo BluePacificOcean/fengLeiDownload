@@ -5,5 +5,5 @@ const path_1 = require("path");
 exports.ASSETDIR = (0, path_1.join)(process.cwd(), process.env.NODE_ENV == 'development' ? '' : 'resources', 'assets');
 exports.ARIA2DIR = (0, path_1.join)(exports.ASSETDIR, 'aria2');
 exports.ARIA2PATH = (0, path_1.join)(exports.ARIA2DIR, 'aria2c');
-exports.PRELOADPATH = (0, path_1.join)(process.cwd(), './preload.js');
+exports.PRELOADPATH = (0, path_1.join)(process.cwd(), 'src/renderer/preload.js');
 exports.LOGOPATH = (0, path_1.join)(exports.ASSETDIR, 'logo.png');

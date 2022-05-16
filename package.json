@@ -7,12 +7,13 @@
     "appId": "com.qf.fengleidownload",
     "productName": "FengLeiDownload",
     "icon": "assets/logo.png",
+    "asar": false,
     "extraResources": [
       "assets"
     ]
   },
   "scripts": {
-    "lint": "eslint index.ts",
+    "lint": "eslint",
     "start": "set NODE_ENV=development& tsc && electron .",
     "build": "tsc && electron-builder",
     "test": "echo \"Error: no test specified\" && exit 1"

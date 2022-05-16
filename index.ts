@@ -53,26 +53,29 @@ function createTray(): Tray {
     return tray
 }
 
-app.whenReady()
+async function start() {
+    await app.whenReady()
+    if(!app.requestSingleInstanceLock()) {
+        throw Error("程序已启动")
+    }
+    startAria2()
+    createTray()
+    openWin()
+    
     .then(() => {
-        if(app.requestSingleInstanceLock()) {
-            return startAria2()
-        }
-        return Promise.reject("program started")
     })
     .then(() => {
-        createTray()
-        openWin()
     })
     .catch((error: Error) => {
         console.error(error);
         app.exit()
     })
 
+}
+
 app.on("window-all-closed", () => {
     win = undefined
 })
-
 
 app.on("quit", () => {
     aria2Process.kill()
