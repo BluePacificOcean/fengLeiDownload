@@ -7,7 +7,6 @@
     "appId": "com.qf.fengleidownload",
     "productName": "FengLeiDownload",
     "icon": "assets/logo.png",
-    "asar": false,
     "extraResources": [
       "assets"
     ]
