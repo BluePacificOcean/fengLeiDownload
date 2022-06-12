@@ -515,6 +515,7 @@
         openDirDialogLock = true
         electron.openSelectPathDialog().then(path => {
           document.querySelector("#ati-dir").value = path
+        }).finally(()=>{
           openDirDialogLock = false
         })
       }
