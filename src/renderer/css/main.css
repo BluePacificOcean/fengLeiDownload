@@ -17,8 +17,18 @@
  * from http://www.gnu.org/licenses/lgpl.txt
  *
  */
+@font-face {
+    font-family: 思源;
+    src: url(../fonts/SourceHanSansCN-Regular.ttf);
+}
+body {
+    font-family: 思源;
+}
 textarea {
     resize: none;
+}
+input {
+    outline: none;
 }
 .select-box {
     cursor: pointer;

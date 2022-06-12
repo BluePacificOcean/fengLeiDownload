@@ -1,9 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LOGOPATH = exports.PRELOADPATH = exports.ARIA2PATH = exports.ARIA2DIR = exports.ASSETDIR = void 0;
+exports.LOGOPATH = exports.PRELOADPATH = exports.ARIA2PATH = exports.ARIA2DIR = exports.ASSETDIR = exports.RESOURCESPATH = exports.isDev = void 0;
 const path_1 = require("path");
-exports.ASSETDIR = (0, path_1.join)(process.cwd(), process.env.NODE_ENV == 'development' ? '' : 'resources', 'assets');
+exports.isDev = process.env.NODE_ENV == 'development';
+exports.RESOURCESPATH = exports.isDev ? '' : 'resources';
+exports.ASSETDIR = (0, path_1.join)(process.cwd(), exports.RESOURCESPATH, 'assets');
 exports.ARIA2DIR = (0, path_1.join)(exports.ASSETDIR, 'aria2');
 exports.ARIA2PATH = (0, path_1.join)(exports.ARIA2DIR, 'aria2c');
-exports.PRELOADPATH = (0, path_1.join)(process.cwd(), 'src/renderer/preload.js');
+exports.PRELOADPATH = (0, path_1.join)(process.cwd(), exports.RESOURCESPATH, exports.isDev ? '' : '/app.asar', 'src/renderer/preload.js');
 exports.LOGOPATH = (0, path_1.join)(exports.ASSETDIR, 'logo.png');

@@ -1,11 +1,15 @@
-import { contextBridge, dialog, ipcRenderer } from 'electron'
+import { contextBridge, ipcRenderer } from 'electron'
 
-async function openSelectPathDialog() {
-    // console.log("openSelectPathDialog");
-    const value = await dialog.showOpenDialog({
-        properties: ["openDirectory"]
+function openSelectPathDialog() {
+    return new Promise((resolve, reject)=>{
+        ipcRenderer.send('onOpenDirectory')
+        ipcRenderer.once("onOpenDirectory", (e, path)=>{
+            if(path == undefined) {
+                reject("未选择任何文件夹")
+            }
+            resolve(path)
+        })
     })
-    return ipcRenderer.send(value.filePaths[0])
 }
 
 contextBridge.exposeInMainWorld("electron", {

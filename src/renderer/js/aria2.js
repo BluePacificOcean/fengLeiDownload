@@ -752,7 +752,7 @@ if (typeof ARIA2=="undefined"||!ARIA2) var ARIA2=(function(){
           var title = "↓"+YAAW.tpl.view.format_size_0()(result.downloadSpeed);
           if (result.uploadSpeed > 0)
             title += " ↑"+YAAW.tpl.view.format_size_0()(result.uploadSpeed);
-          title += " - Yet Another Aria2 Web Frontend";
+          title += " - 风雷下载器";
           document.title = title;
         }
       );

@@ -20,7 +20,11 @@ function createWin() {
         icon: index_1.LOGOPATH,
         width: 1000,
         height: 750,
-        autoHideMenuBar: true
+        autoHideMenuBar: true,
+        webPreferences: {
+            nodeIntegration: true,
+            preload: index_1.PRELOADPATH
+        }
     });
     win.loadFile('src/renderer/index.html');
     return win;
@@ -45,6 +49,12 @@ function createTray() {
     });
     return tray;
 }
+electron_1.ipcMain.on('onOpenDirectory', (e) => __awaiter(void 0, void 0, void 0, function* () {
+    const path = yield electron_1.dialog.showOpenDialog({
+        properties: ["openDirectory"]
+    });
+    e.reply('onOpenDirectory', path.filePaths[0]);
+}));
 electron_1.app.on("window-all-closed", () => {
     win = undefined;
 });

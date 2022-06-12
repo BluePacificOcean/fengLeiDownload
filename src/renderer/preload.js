@@ -1,22 +1,15 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const electron_1 = require("electron");
 function openSelectPathDialog() {
-    return __awaiter(this, void 0, void 0, function* () {
-        // console.log("openSelectPathDialog");
-        const value = yield electron_1.dialog.showOpenDialog({
-            properties: ["openDirectory"]
+    return new Promise((resolve, reject) => {
+        electron_1.ipcRenderer.send('onOpenDirectory');
+        electron_1.ipcRenderer.once("onOpenDirectory", (e, path) => {
+            if (path == undefined) {
+                reject("未选择任何文件夹");
+            }
+            resolve(path);
         });
-        return electron_1.ipcRenderer.send(value.filePaths[0]);
     });
 }
 electron_1.contextBridge.exposeInMainWorld("electron", {

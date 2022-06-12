@@ -20,7 +20,7 @@
 <html lang="en" manifest="offline.appcache">
   <head>
     <meta charset=utf-8 />
-    <title>Aria2 Web 控制台</title>
+    <title>Aria2 控制台</title>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, width=device-width">
     <meta name="author" content="Binux" />
     
@@ -35,7 +35,7 @@
   <body>
     <div class="container">
       <header class="main-head page-header">
-        <h1>Aria2 Web 控制台</h1>
+        <h1>Aria2 控制台</h1>
         <span id="offline-cached"></span>
         <div id="global-info" class="pull-right">
           <div id="global-version"></div>
@@ -398,7 +398,7 @@
         <div class="control-group">
           <label class="control-label" for="ati-dir">下载路径</label>
           <div class="controls">
-            <input id="ati-dir" class="input-xlarge" name="dir" />
+            <input id="ati-dir" class="input-xlarge" name="dir" onclick="openDirDialog()" />
           </div>
         </div>
         <div class="clearfix"></div>
@@ -506,6 +506,19 @@
     <script src="js/peerid.js"></script>
     <script src="js/aria2.js"></script>
     <script src="js/yaaw.js"></script>
+    <script>
+      let openDirDialogLock = false
+      function openDirDialog() {
+        if(openDirDialogLock) {
+          return
+        }
+        openDirDialogLock = true
+        electron.openSelectPathDialog().then(path => {
+          document.querySelector("#ati-dir").value = path
+          openDirDialogLock = false
+        })
+      }
+    </script>
   </body>
 </html>
 <!-- vim: set et sw=2 ts=2 sts=2 ff=unix fenc=utf8: -->
