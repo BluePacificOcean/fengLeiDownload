@@ -1,6 +1,6 @@
 import { contextBridge, ipcRenderer } from 'electron'
 
-function openSelectPathDialog() {
+function openDirectory() {
     return new Promise((resolve, reject)=>{
         ipcRenderer.send('onOpenDirectory')
         ipcRenderer.once("onOpenDirectory", (e, path)=>{
@@ -13,5 +13,5 @@ function openSelectPathDialog() {
 }
 
 contextBridge.exposeInMainWorld("electron", {
-    openSelectPathDialog
+    openDirectory
 })

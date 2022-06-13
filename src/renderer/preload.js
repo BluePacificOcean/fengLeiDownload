@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const electron_1 = require("electron");
-function openSelectPathDialog() {
+function openDirectory() {
     return new Promise((resolve, reject) => {
         electron_1.ipcRenderer.send('onOpenDirectory');
         electron_1.ipcRenderer.once("onOpenDirectory", (e, path) => {
@@ -13,5 +13,5 @@ function openSelectPathDialog() {
     });
 }
 electron_1.contextBridge.exposeInMainWorld("electron", {
-    openSelectPathDialog
+    openDirectory
 });
