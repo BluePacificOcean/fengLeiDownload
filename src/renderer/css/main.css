@@ -187,6 +187,9 @@
 .task .progress {
     margin: 1px 0;
 }
+.task .progress .bar {
+    text-align: right;
+}
 
 .task .download-speed,
 .task .upload-speed,

@@ -14,7 +14,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.startAria2 = exports.aria2Process = void 0;
+exports.stopAria2 = exports.startAria2 = exports.aria2Process = void 0;
 const child_process_1 = require("child_process");
 const index_1 = require("../config/index");
 __exportStar(require("./config"), exports);
@@ -30,3 +30,9 @@ function startAria2() {
     });
 }
 exports.startAria2 = startAria2;
+function stopAria2() {
+    if (exports.aria2Process !== undefined) {
+        exports.aria2Process.kill();
+    }
+}
+exports.stopAria2 = stopAria2;

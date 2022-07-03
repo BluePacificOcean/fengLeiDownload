@@ -34,9 +34,6 @@ function updateConfigFile(key, val) {
         });
         let reg = new RegExp(`^${key}=.*?\$`, 'm');
         content = content.replace(reg, `${key}=${val}`);
-        yield fileHandle.writeFile(content, {
-            flag: 'w',
-            encoding: 'utf-8'
-        });
+        yield fileHandle.write(content, 0, 'utf-8');
     });
 }

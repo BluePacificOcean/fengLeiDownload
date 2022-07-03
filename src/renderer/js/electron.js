@@ -8,6 +8,6 @@ function openDirDialog(target) {
     })
 }
 
-function updateAria2Config(target, key) {
-    electron.updateAria2Config(key, target.value)
-}
+$('#saveSettings').on("click", ()=>{
+    electron.updateAria2Config("dir", $('#gsi-dir').val())
+})

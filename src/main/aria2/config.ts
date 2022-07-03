@@ -21,8 +21,5 @@ async function updateConfigFile(key: string, val: string) {
     })
     let reg = new RegExp(`^${key}=.*?\$`, 'm')
     content = content.replace(reg, `${key}=${val}`)
-    await fileHandle.writeFile(content, {
-        flag: 'w',
-        encoding: 'utf-8'
-    })
+    await fileHandle.write(content, 0, 'utf-8')
 }

@@ -274,8 +274,9 @@
 				</div>
 				<div class="right-area">
 					<div class="progress {{progressStatus}}">
-							<div class="bar" style="width:{{progress}}%;"> </div>
-							<div class="bar tex">{{progress}}%</div>
+							<div class="bar" style="width:{{progress}}%;"> 
+								{{progress}}%
+							</div>
 					</div>
 					<div class="progress-info">
 						{{#downloadSpeed}}<span class="download-speed"><i class="icon-download"></i> {{#_v.format_size}}{{downloadSpeed}}{{/_v.format_size}}/s</span>{{/downloadSpeed}}
@@ -312,8 +313,7 @@
 					</div>
 					<div class="pull-right">
 						<div class="progress {{progressStatus}}">
-							<div class="bar" style="width:{{progress}}%;"> </div>
-							<div class="bar tex">{{progress}}%</div>
+							<div class="bar" style="width:{{progress}}%;">{{progress}}%</div>
 						</div>
 					</div>
 					<div class="clearfix"></div>
@@ -510,14 +510,7 @@
 				<div class="control-group">
 					<label class="control-label" for="gsi-dir">默认下载目录</label>
 					<div class="controls">
-						<input
-						type="text"
-						id="gsi-dir"
-						name="dir"
-						class="input-xlarge"
-						value="{{dir}}"
-						onclick="openDirDialog(this)" 
-						onchange="updateAria2Config(this, 'dir')" />
+						<input type="text" id="gsi-dir" name="dir" class="input-xlarge" value="{{dir}}" onclick="openDirDialog(this)" />
 					</div>
 				</div>
 			</form>

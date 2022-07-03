@@ -14,3 +14,9 @@ export function startAria2() {
         })
     })
 }
+
+export function stopAria2() {
+    if(aria2Process !== undefined) {
+        aria2Process.kill()
+    }
+}
