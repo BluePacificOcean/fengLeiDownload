@@ -1,6 +1,6 @@
 import { spawn, ChildProcessWithoutNullStreams } from 'child_process'
 import { ARIA2DIR, ARIA2PATH } from '../config/index'
-
+export * from './config'
 export let aria2Process: ChildProcessWithoutNullStreams
 
 export function startAria2() {

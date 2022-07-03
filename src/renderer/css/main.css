@@ -17,19 +17,7 @@
  * from http://www.gnu.org/licenses/lgpl.txt
  *
  */
-@font-face {
-    font-family: 思源;
-    src: url(../fonts/SourceHanSansCN-Regular.ttf);
-}
-body {
-    font-family: 思源;
-}
-textarea {
-    resize: none;
-}
-input {
-    outline: none;
-}
+
 .select-box {
     cursor: pointer;
     user-select: none;
@@ -177,7 +165,7 @@ input {
 .task .task-name span {
     word-break: break-all;
     margin-left: 3px;
-    font-size: 18px;
+    font-size: 14px;
     font-weight: bold;
 }
 
@@ -203,7 +191,7 @@ input {
 .task .download-speed,
 .task .upload-speed,
 .task .seeders {
-    margin-right: 8px;
+    margin-right: 5px;
 }
 
 #other-tasks .task-info {
@@ -266,7 +254,6 @@ input {
         position: relative;
         width: auto;
     }
-
     #other-tasks .left-area {
         margin-right: 0;
     }
@@ -309,10 +296,10 @@ input {
 }
 @media (min-width: 980px) {
     #active-tasks .left-area {
-        margin-right: 286px;
+        margin-right: 296px;
     }
     #active-tasks .right-area {
-        width: 270px;
+        width: 280px;
     }
 
     #other-tasks .left-area {
@@ -364,18 +351,17 @@ input {
     padding-bottom: 6px;
     vertical-align: top;
     border-bottom: 1px solid #FFF;
+    white-space: nowrap;
 }
 #ib-files .ib-file-title:hover {
     border-bottom: 1px solid #666;
 }
 #ib-file-btn,
 #ib-options-btn {
-    float: right !important;
     margin: 0 0 5px 5px;
 }
 @media (max-width: 980px) {
     #ib-file-btn, #ib-options-btn {
-        float: none !important;
         margin-bottom: 5px;
     }
 }
@@ -387,23 +373,28 @@ input {
 }
 #ib-options li {
     display: block;
-    float: left;
     padding-bottom: 6px;
-    margin-right: 100px;
+    white-space: nowrap;
 }
 #ib-options li span {
     display: block;
     text-align: right;
-    padding-right: 1em;
-    width: 140px;
+    padding-right: 12px;
+    width: 75px;
     line-height: 24px;
 }
-#ib-options li > * {
+#ib-options li > span {
     float: left;
 }
 #ib-peers .ip_port {
     display: inline-block;
     width: 250px;
+}
+#ib-options-btn div {
+    width: 303px;
+}
+#ib-options-save {
+    float: right;
 }
 
 /* task-contextmenu */
@@ -447,11 +438,9 @@ input {
 }
 
 #uri-more {
-    font-size: 7px;
+    font-size: 14px;
     text-align: center;
-    height: 10px;
     margin: 0 20px 20px;
-    line-height: 10px;
     color: #DDD;
     background-color: whiteSmoke;
     cursor: pointer;
@@ -532,6 +521,7 @@ input {
 #rpc-path {
   width: 100%;
   height: 28px;
+  float: left;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
 }
@@ -561,5 +551,8 @@ input {
     margin-left: 130px;
     padding-right: 0;
 }
-
+td, th {
+    padding: 0 1em 0 0;
+    text-align: left;
+}
 /* vim: set et sw=4 ts=4 sts=4 fdm=marker ff=unix fenc=utf8: */ 

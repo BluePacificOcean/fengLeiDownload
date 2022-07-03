@@ -1,7 +1,7 @@
-import { app, BrowserWindow, Menu, Tray, ipcMain, dialog } from 'electron'
+import { app, BrowserWindow, Menu, Tray, } from 'electron'
 import { PRELOADPATH, LOGOPATH } from './config/index'
 import { startAria2, aria2Process } from './aria2/index'
-
+import "./event"
 let win: BrowserWindow | undefined
 let tray: Tray
 
@@ -42,12 +42,6 @@ function createTray(): Tray {
     return tray
 }
 
-ipcMain.on('onOpenDirectory', async (e)=>{
-    const path = await dialog.showOpenDialog({
-        properties: ["openDirectory"]
-    })
-    e.reply('onOpenDirectory', path.filePaths[0])
-})
 
 app.on("window-all-closed", () => {
     win = undefined

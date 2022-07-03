@@ -12,6 +12,20 @@ function openSelectPathDialog() {
         });
     });
 }
+function updateAria2Config(key, val) {
+    return new Promise((resolve, reject) => {
+        electron_1.ipcRenderer.send("onUpdateAria2Config", [key, val]);
+        electron_1.ipcRenderer.once("onUpdateAria2Config", success => {
+            if (success) {
+                resolve();
+            }
+            else {
+                reject();
+            }
+        });
+    });
+}
 electron_1.contextBridge.exposeInMainWorld("electron", {
-    openSelectPathDialog
+    openSelectPathDialog,
+    updateAria2Config
 });

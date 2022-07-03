@@ -13,6 +13,7 @@ exports.start = void 0;
 const electron_1 = require("electron");
 const index_1 = require("./config/index");
 const index_2 = require("./aria2/index");
+require("./event");
 let win;
 let tray;
 function createWin() {
@@ -49,12 +50,6 @@ function createTray() {
     });
     return tray;
 }
-electron_1.ipcMain.on('onOpenDirectory', (e) => __awaiter(void 0, void 0, void 0, function* () {
-    const path = yield electron_1.dialog.showOpenDialog({
-        properties: ["openDirectory"]
-    });
-    e.reply('onOpenDirectory', path.filePaths[0]);
-}));
 electron_1.app.on("window-all-closed", () => {
     win = undefined;
 });
