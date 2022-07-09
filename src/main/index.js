@@ -28,6 +28,7 @@ function createWin() {
         }
     });
     win.loadFile('src/renderer/index.html');
+    // win.loadURL("http://127.0.0.1:8080/src/")
     return win;
 }
 function openWin() {
